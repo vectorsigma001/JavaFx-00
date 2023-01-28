@@ -1,0 +1,51 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class Main extends Application{
+Label click=new Label("please select the items you like");
+  @Override
+    public void start(Stage theStage){
+    RadioButton porsche=new RadioButton("Porsche");
+    RadioButton rollsRoyce=new RadioButton("RollsRoyce");
+    RadioButton audi=new RadioButton("Audi");
+    RadioButton mercedes=new RadioButton("Mercedes");
+
+    ToggleGroup group=new ToggleGroup();
+      group.getToggles().addAll(porsche,rollsRoyce,audi,mercedes);
+      group.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+        public void changed(ObservableValue <? extends Toggle> ov,
+           final Toggle toggle, final Toggle new_Toggle             ){
+String toggleBtn = ((ToggleButton)new_Toggle).getText();
+System.out.println("Your selection: " + toggleBtn);
+           }
+      });
+      Label msg=new Label("please select your one of the car ");
+
+    HBox buttonBox=new HBox();
+      buttonBox.getChildren().addAll(porsche,rollsRoyce,audi,mercedes);
+      buttonBox.setSpacing(10);
+
+VBox root=new VBox();
+      root.getChildren().addAll(click,msg,buttonBox);
+      root.setSpacing(10);
+      root.setMinSize(350,250);
+
+      Scene scene=new Scene(root);
+      theStage.setScene(scene);
+      theStage.setTitle("simple radiobutton");
+      theStage.show();
+    }
+  public static void main(String args[]){
+    launch(args);
+  }
+}
