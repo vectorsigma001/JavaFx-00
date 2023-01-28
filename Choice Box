@@ -1,0 +1,35 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+
+public class Main extends Application{
+@Override
+  public void start(Stage theStage){
+    Label carLbl=new Label("car:");
+    ChoiceBox<String> cars=new ChoiceBox<>();
+    cars.getItems().addAll("ford","Audi","Ferrari","Porsche");
+    Label selectionMsgLbl=new Label("Your selection");
+    Label selectedValueLbl=new Label();
+    selectedValueLbl.textProperty().bind(cars.valueProperty());
+
+    GridPane root=new GridPane();
+    root.setVgap(10);
+    root.setHgap(10);
+
+    root.addRow(0,carLbl,cars);
+    root.addRow(1,selectionMsgLbl,selectedValueLbl);
+    root.setMinSize(350, 250);
+
+    Scene scene=new Scene(root);
+    theStage.setScene(scene);
+    theStage.setTitle("adding some simple choicebox");
+    theStage.show();
+  }
+
+  public static void main(String args[]){
+    launch(args);
+  }
+}
