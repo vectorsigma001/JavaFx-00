@@ -1,0 +1,44 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.beans.Observable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.control.CheckBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
+public class Main extends Application{
+Label click=new Label("please click on the given options");
+  @Override
+  public void start(Stage theStage){
+
+    CheckBox pen=new CheckBox("pen");
+    pen.selectedProperty().addListener(new ChangeListener<Boolean>(){
+      public void changed(ObservableValue <? extends Boolean>ov,
+                        final Boolean value,final Boolean newValue){
+        if(newValue != null &&newValue){
+          System.out.println("You have selected the pen");
+        }
+                        }
+    });
+    CheckBox pencil=new CheckBox("pencil");
+    pencil.selectedProperty().addListener(new ChangeListener<Boolean>(){
+      public void changed(ObservableValue <? extends Boolean>ov,
+                         final Boolean value, final Boolean newValue){
+        if(newValue != null &&newValue){
+          System.out.println("You have selected pencil");
+        }
+                         }
+    });
+
+    VBox root=new VBox();
+    root.getChildren().addAll(click,pen,pencil);
+    root.setSpacing(10);
+    root.setMinSize(350,250);
+
+    Scene scene=new Scene(root);
+    theStage.setScene(scene);
+    theStage.setTitle("Creating some CheckBox");
+    theStage.show();
+  }
