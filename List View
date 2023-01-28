@@ -1,0 +1,41 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+public class Main extends Application{
+
+  Label selectionLbl=new Label("Your selection: None");
+  @Override 
+  public void start(Stage theStage){
+    ListView<String> cars=new ListView<String>();
+    cars.getItems().addAll("Ford","Audi","Ferrari","Porsche");
+cars.getSelectionModel().selectFirst();
+    cars.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
+      public void changed(ObservableValue <? extends String> ov,final String oldValue,final String newValue){
+       System.out.println("Your selection: "+newValue);
+      }
+    });
+
+    GridPane root=new GridPane();
+    root.setVgap(10);
+    root.setHgap(10);
+
+    root.addRow(0,cars);
+    root.addRow(1,selectionLbl);
+    root.setMinSize(350,250);
+
+    Scene scene=new Scene(root);
+    theStage.setScene(scene);
+    theStage.setTitle("Creating some basic ListView");
+    theStage.show();
+  }
+
+
+  public static void main(String args[]){
+    launch(args);
+  }
+}
