@@ -1,0 +1,39 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+public class Label1 extends Application{
+
+  @Override 
+  public void start(Stage theStage){
+
+    TextField firstNameFId=new TextField();
+    TextField lastNameFId=new TextField();
+
+    Label firstNameLBI=new Label("_First Name:");
+    Label lastNameLBI=new Label("_Last Name:");
+
+    firstNameLBI.setLabelFor(firstNameFId);
+    firstNameLBI.setMnemonicParsing(true);
+
+    lastNameLBI.setLabelFor(lastNameFId);
+    lastNameLBI.setMnemonicParsing(true);
+
+    GridPane root=new GridPane();
+    root.addColumn(0,firstNameLBI,firstNameFId);
+    root.addColumn(1,lastNameLBI,lastNameFId);
+    root.setMinSize(350,250);
+   
+
+    Scene scene=new Scene(root);
+    theStage.setScene(scene);
+    theStage.setTitle("Creating some filling options");
+    theStage.show();
+  }
+  public static void main(String args[]){
+    launch(args);
+  }
+}
