@@ -1,0 +1,44 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+//import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+public class Main extends Application{
+@Override
+  public void start(Stage theStage){
+   Label lbl1=new Label("Please select the save button");
+    Button savebtn=new Button("add");
+   // savebtn.addFill(Color.BLUE);
+    savebtn.setOnAction(new EventHandler<ActionEvent>(){
+      @Override public void handle(ActionEvent e){
+        System.out.println("You have clicked the save button");
+      }
+    });
+    Button exitbtn=new Button("exit");
+    exitbtn.setOnAction(new EventHandler<ActionEvent>(){
+      @Override public void handle(ActionEvent e){
+       System.out.println("You have clicked the exit button"); 
+      }
+    });
+
+    HBox root1=new HBox();
+    root1.getChildren().addAll(savebtn,exitbtn);
+
+    VBox root2=new VBox(root1);
+    root2.getChildren().addAll(lbl1);
+    root2.setMinSize(350,250);
+
+    Scene scene=new Scene(root2);
+    theStage.setScene(scene);
+    theStage.setTitle("Selecting buttons");
+    theStage.show();
+  }
+  public static void main(String args[]){
+    launch(args);
+  }
+}
