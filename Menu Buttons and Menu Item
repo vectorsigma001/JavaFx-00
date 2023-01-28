@@ -1,0 +1,42 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.layout.VBox;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.stage.Stage;
+
+public class Main extends Application{
+  @Override
+  public void start(Stage theStage){
+    Label lbl=new Label("please select the car button for choosing the car");
+    MenuItem porsche=new MenuItem("porsche");
+    porsche.setOnAction(new EventHandler<ActionEvent>(){
+      @Override public void handle(ActionEvent e){
+        System.out.println("You have selected porsche");
+      }
+    });
+    MenuItem mustang=new MenuItem("Mustang");
+    mustang.setOnAction(new EventHandler<ActionEvent>(){
+      @Override public void handle(ActionEvent e){
+       System.out.println("You have selected mustang"); 
+      }
+    });
+    MenuButton cars=new MenuButton("select");
+    cars.getItems().addAll(porsche,mustang);
+    VBox root=new VBox();
+    root.getChildren().addAll(cars,lbl);
+    root.setMinSize(350,250);
+
+    Scene scene=new Scene(root);
+    theStage.setScene(scene);
+    theStage.setTitle("adding menubutton");
+    theStage.show();
+  }  
+  public static void main(String args[]){
+    launch(args);
+    
+  } 
+}
