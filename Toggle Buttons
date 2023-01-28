@@ -1,0 +1,56 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.beans.Observable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
+public class Main extends Application{
+Label click=new Label("please click on the given options");
+  @Override
+  public void start(Stage theStage){
+
+    ToggleButton pen=new ToggleButton("pen");
+    ToggleButton pencil=new ToggleButton("pencil");
+
+    final ToggleGroup group=new ToggleGroup();
+    group.getToggles().addAll(pen,pencil);
+    group.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+      public void changed(ObservableValue <? extends Toggle>ov,
+                        final Toggle toggle,final Toggle new_toggle){
+      
+          String toggleBtn = ((ToggleButton)new_toggle).getText();
+System.out.println("Your selection: " + toggleBtn);
+
+        
+                        }
+    });
+    
+   
+    HBox buttonBox=new HBox();
+    buttonBox.getChildren().addAll(pen,pencil);
+    buttonBox.setSpacing(10);
+
+    VBox root=new VBox();
+    root.getChildren().addAll(click,buttonBox);
+    root.setSpacing(10);
+    root.setMinSize(350,250);
+
+    Scene scene=new Scene(root);
+    theStage.setScene(scene);
+    theStage.setTitle("Creating some CheckBox");
+    theStage.show();
+  }
+
+
+  public static void main(String args[]){
+    launch(args);
+  }
+}
+
