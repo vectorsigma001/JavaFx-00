@@ -1,0 +1,42 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.layout.VBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+
+public class Main extends Application{
+TextArea messageArea=new TextArea();
+  @Override 
+  public void start(Stage theStage){
+    final TextArea input=new TextArea();
+    input.setPromptText("Input your message here");
+
+    messageArea.setPromptText("Your message:");
+    messageArea.setPrefColumnCount(20);
+    messageArea.setPrefRowCount(10);
+
+    Button printBtn=new Button("print message");
+    printBtn.setOnAction(new EventHandler<ActionEvent>(){
+      @Override public void handle(ActionEvent e){
+        messageArea.appendText(input.getText()+"\n");
+      }
+    });
+    VBox root=new VBox();
+    root.getChildren().addAll(new Label("Input: "),input,new Label("message"),messageArea,printBtn);
+    root.setMinSize(350,250);
+
+    Scene scene=new Scene(root);
+    theStage.setScene(scene);
+    theStage.setTitle("Creating some of the basics textArea");
+    theStage.show();
+  }
+
+
+  public static void main(String args[]){
+    launch(args);
+  }
