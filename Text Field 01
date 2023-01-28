@@ -1,0 +1,46 @@
+package replit;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+public class Main extends Application{
+Label message=new Label("Please fill the items");
+  @Override
+  public void start(Stage theStage){
+   TextField firstname=new TextField();
+    TextField lastname=new TextField();
+    firstname.setPrefColumnCount(15);
+    lastname.setPrefColumnCount(15);
+
+    firstname.setOnAction(new EventHandler<ActionEvent>(){
+      @Override public void handle(ActionEvent e){
+        System.out.println("You have changed the first name");
+      }
+    });
+    lastname.setOnAction(new EventHandler<ActionEvent>(){
+      @Override public void handle(ActionEvent e){
+        System.out.println("You have changed the last name");
+      }
+    });
+  GridPane root=new GridPane();
+//root.setHGap(10);
+//root.setVGap(10);
+    root.addRow(0,message);
+    root.addRow(1,new Label("first name"),firstname);
+    root.addRow(2,new Label("last name"),lastname);
+    root.setMinSize(350,450);
+
+    Scene scene=new Scene(root);
+    theStage.setScene(scene);
+    theStage.setTitle("enter your information");
+    theStage.show();
+            
+  }
+  public static void main(String args[]){
+    launch(args);
+  }
+}
